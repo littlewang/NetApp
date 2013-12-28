@@ -56,13 +56,26 @@ public class WwdEmbedded {
         } catch (SQLException ex) {
             Logger.getLogger(WwdEmbedded.class.getName()).log(Level.SEVERE, null, ex);
         }            
-    }    
+    }   
+    public void del(int id){
+        try {
+            psInsert = conn.prepareStatement("delete from com where COM_ID=?");
+            psInsert.setInt(1, id); 
+            psInsert.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(WwdEmbedded.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+    }
+    
+    
     public List list(){
         try {
              s = conn.createStatement();
-             myWishes = s.executeQuery("select COM_NAME, USER_NAME from com order by COM_ID");
+             myWishes = s.executeQuery("select COM_ID, COM_NAME, USER_NAME from com order by COM_ID");
             while (myWishes.next()) {
-                System.out.println("company:" + myWishes.getString(1)+ " user: " + myWishes.getString(2));
+                System.out.println("COM_ID:"+ myWishes.getString(1)+   " company:" + myWishes.getString(2)+ " user: " + myWishes.getString(3));
             }            
         } catch (SQLException ex) {
             Logger.getLogger(WwdEmbedded.class.getName()).log(Level.SEVERE, null, ex);
