@@ -48,7 +48,7 @@ public class App {
         app.third(httpclient);
         app.fourth(httpclient);
         app.fifth(httpclient);
-        app.six(httpclient);
+        app.sixth(httpclient);
     }
     private String html;
     private String imgurl;
@@ -248,7 +248,7 @@ public class App {
 			}
 		}
 	}	
-	public void six(CloseableHttpClient httpclient){
+	public void sixth(CloseableHttpClient httpclient){
 		 CloseableHttpResponse response2 = null;
 		 InputStream is2 = null;
 		 HttpGet httpGet2 = new HttpGet("http://my.51.com/guide/step3?from=step2&from2=passport");
