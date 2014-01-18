@@ -22,7 +22,7 @@ import org.apache.http.util.EntityUtils;
 
 public class Login {
 
-    private String loginurl = "http://passport.51.com/login.5p?callback=jsonp1390035314287&_=1390035333705&passport_51_jsonp=true&passport_51_user=YIVRPTBGV&passport_51_password=123456789&from=www_index_v_c&passport_auto_login=1&version=2";
+    private String loginurl = "http://passport.51.com/login.5p?callback=jsonp1390035314287&_=1390035333705&passport_51_jsonp=true&passport_51_user=liplip2006&passport_51_password=198812255yu&from=www_index_v_c&passport_auto_login=1&version=2";
     private String html;
 
     public static void main(String[] args) throws IOException {
@@ -31,6 +31,8 @@ public class Login {
         lo.login(client);
         lo.gomain(client);
         lo.getcore(client);
+        lo.dafen(client);
+        lo.totle(client);
         client.close();
 
     }
@@ -135,7 +137,57 @@ public class Login {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void dafen(CloseableHttpClient client){
+            try {   
+//              String url="http://jiaoyou.51.com/?c=grade&a=getMyInfoJsonp&callback=jsonp1390075033783&ie=0&_=1390075189679";
+                String url="http://my.51.com/task/reward/?gid=11&tid=399&callback=jsonp1390075465287&_=1390075474770";                
+                CloseableHttpResponse response1 = null;
+                HttpGet httpGet = new HttpGet(url);
+                response1 = client.execute(httpGet);
+                System.out.println(response1.getStatusLine());
+                //cookies
+                Header[] h = response1.getHeaders("Set-Cookie");
+                for (Header header : h) {
+                    System.out.println(header.getValue());
+                }
+                HttpEntity entity1 = response1.getEntity();
+                InputStream is = entity1.getContent();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                int i = -1;
+                while ((i = is.read()) != -1) {
+                    baos.write(i);
+                }
+                html = baos.toString();
+                System.out.println(html);
+                is.close();
+                EntityUtils.consume(entity1);
+                response1.close();
+                try {
+                    httpGet.clone();
+                } catch (CloneNotSupportedException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                
+                
+                
+            } catch (IOException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
 
+
+
+
+}
+    
+    
+    
+    
+    
+    
+    
     public void upload(CloseableHttpClient client) {
         
         String url1="http://www.51.com/stat/setface/cut/?callback=jsonp1390042417605&_=1390043025800";
@@ -173,4 +225,46 @@ public class Login {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void totle(CloseableHttpClient client){
+                try {
+                    String url="http://jifen.51.com/act/getintegral/?callback=jsonp1390075465290&_=1390075477696";
+                    
+                    CloseableHttpResponse response1 = null;
+                    HttpGet httpGet = new HttpGet(url);
+                    response1 = client.execute(httpGet);
+                    System.out.println(response1.getStatusLine());
+                    //cookies
+                    Header[] h = response1.getHeaders("Set-Cookie");
+                    for (Header header : h) {
+                        System.out.println(header.getValue());
+                    }
+                    HttpEntity entity1 = response1.getEntity();
+                    InputStream is = entity1.getContent();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    int i = -1;
+                    while ((i = is.read()) != -1) {
+                        baos.write(i);
+                    }
+                    html = baos.toString();
+                    System.out.println(html);
+                    is.close();
+                    EntityUtils.consume(entity1);
+                    response1.close();
+                    try {
+                        httpGet.clone();
+                    } catch (CloneNotSupportedException ex) {
+                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                } catch (IOException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+    }
+        
+        
+    
+    
+    
+    
 }
