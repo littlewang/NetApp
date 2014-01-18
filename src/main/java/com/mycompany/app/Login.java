@@ -137,13 +137,24 @@ public class Login {
     }
 
     public void upload(CloseableHttpClient client) {
+        
+        String url1="http://www.51.com/stat/setface/cut/?callback=jsonp1390042417605&_=1390043025800";
+       
+        String url2="http://jiaoyou.51.com/?c=stat&a=score&type=0&callback=jsonp1390042417606&_=1390043108807";
+        //post
+        String url3="http://setface.51.com/php/photoscore.php?photoid=undefined&groupid=undefined&length=40194&key=7d1bd8b9a48191922b598a74c88da998&key2=undefined&user=yivrptbgv&time=1390042770&type=big";
+        String url4="http://setface.51.com/php/photoscore.php?photoid=undefined&groupid=undefined&length=7909&key=7d1bd8b9a48191922b598a74c88da998&key2=undefined&user=yivrptbgv&time=1390042770&type=small";
+       
+        String url5="http://setface.51.com/php/photoscore.php?photoid=undefined&groupid=undefined&length=40194&key=7d1bd8b9a48191922b598a74c88da998&key2=undefined&user=yivrptbgv&time=1390042770&type=original";
+       
+        String url6="http://jiaoyou.51.com/?c=photo&a=score&ie=0&callback=jsonp1390042417607&_=1390043114716";
+        
+        
         try {
             client.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
             HttpPost httppost = new HttpPost("http://localhost:9002/upload.php");
-            File file = new File("c:/TRASH/zaba_1.jpg");
-
+            File file = new File("/resources/0.jpg");
             FileEntity reqEntity = new FileEntity(file, "binary/octet-stream");
-
             httppost.setEntity(reqEntity);
             reqEntity.setContentType("binary/octet-stream");
             System.out.println("executing request " + httppost.getRequestLine());
