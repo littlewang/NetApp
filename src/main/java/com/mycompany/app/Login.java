@@ -91,4 +91,46 @@ public class Login {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    
+    public void getcore(CloseableHttpClient client){
+            try {             
+                String url="http://my.51.com/task/reward/?gid=20&tid=435&callback=jsonp1390036841287&_=1390036842322";
+                CloseableHttpResponse response1 = null;
+                HttpGet httpGet = new HttpGet(url);
+                response1 = client.execute(httpGet);
+                System.out.println(response1.getStatusLine());
+                //cookies
+                Header[] h = response1.getHeaders("Set-Cookie");
+                for (Header header : h) {
+                    System.out.println(header.getValue());
+                }
+                HttpEntity entity1 = response1.getEntity();
+                InputStream is = entity1.getContent();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                int i = -1;
+                while ((i = is.read()) != -1) {
+                    baos.write(i);
+                }
+                html = baos.toString();
+                System.out.println(html);
+                EntityUtils.consume(entity1);
+                response1.close();
+                try {
+                    httpGet.clone();
+                } catch (CloneNotSupportedException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }               
+            } catch (IOException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    
+    
+    
+    
+    }
+    
+    
+    
 }
