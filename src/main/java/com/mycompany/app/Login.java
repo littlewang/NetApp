@@ -15,14 +15,14 @@ import org.apache.http.util.EntityUtils;
 
 public class Login {
 
-    private String loginurl = "http://passport.51.com/login.5p?callback=jsonp1390035314287&_=1390035333705&passport_51_jsonp=true&passport_51_user=liplip2006&passport_51_password=198812255yu&from=www_index_v_c&passport_auto_login=1&version=2";
+    private String loginurl = "http://passport.51.com/login.5p?callback=jsonp1390035314287&_=1390035333705&passport_51_jsonp=true&passport_51_user=YIVRPTBGV&passport_51_password=123456789&from=www_index_v_c&passport_auto_login=1&version=2";
     private String html;
-
     public static void main(String[] args) throws IOException {
         Login lo = new Login();
         CloseableHttpClient client = HttpClients.createDefault();
         lo.login(client);
         lo.gomain(client);
+        lo.getcore(client);
         client.close();
 
     }
@@ -46,7 +46,7 @@ public class Login {
                 baos.write(i);
             }
             html = baos.toString();
-            System.out.println(html);
+//            System.out.println(html);
             EntityUtils.consume(entity1);
             response1.close();
             try {
@@ -79,7 +79,7 @@ public class Login {
                 baos.write(i);
             }
             html = baos.toString();
-            System.out.println(html);
+//            System.out.println(html);
             EntityUtils.consume(entity1);
             response1.close();
             try {
@@ -91,9 +91,6 @@ public class Login {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
     public void getcore(CloseableHttpClient client){
             try {             
                 String url="http://my.51.com/task/reward/?gid=20&tid=435&callback=jsonp1390036841287&_=1390036842322";
